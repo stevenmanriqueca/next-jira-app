@@ -1,8 +1,8 @@
 import { useState, SyntheticEvent } from "react";
 import { NextPage } from "next";
 import { Paper, Box, Tabs, Tab } from "@mui/material";
-import { TabPanel } from "../../components/auth/TabPanel";
 import { AuthLayout } from "../../components/layout";
+import { TabPanel, LoginTabContent, RegisterTabContent } from "../../components/auth";
 import VpnKeyOutlinedIcon from "@mui/icons-material/VpnKeyOutlined";
 import HowToRegOutlinedIcon from "@mui/icons-material/HowToRegOutlined";
 
@@ -37,10 +37,10 @@ const AuthPage: NextPage = () => {
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
-          Login
+          <LoginTabContent />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          Register
+          <RegisterTabContent />
         </TabPanel>
       </Paper>
     </AuthLayout>
