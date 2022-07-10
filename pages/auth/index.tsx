@@ -1,10 +1,11 @@
 import { useState, SyntheticEvent } from "react";
 import { NextPage } from "next";
-import { Paper, Box, Tabs, Tab } from "@mui/material";
+import { Box, Tabs, Tab } from "@mui/material";
 import { AuthLayout } from "../../components/layout";
 import { TabPanel, LoginTabContent, RegisterTabContent } from "../../components/auth";
 import VpnKeyOutlinedIcon from "@mui/icons-material/VpnKeyOutlined";
 import HowToRegOutlinedIcon from "@mui/icons-material/HowToRegOutlined";
+import { StyledContainerTabs } from '../../styles/components/ContainerTabs';
 
 const AuthPage: NextPage = () => {
   const [value, setValue] = useState<number>(0);
@@ -13,10 +14,9 @@ const AuthPage: NextPage = () => {
     setValue(newValue);
   };
 
-  //TODO : MAKE  BREAKPOINTS IN THE PAPER TO RESPONSIVE
   return (
     <AuthLayout title={value === 0 ? "Auth | Login" : "Auth | Register"}>
-      <Paper sx={{ width: "45%", position: "absolute", top: "20%" }}>
+      <StyledContainerTabs>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs
             value={value}
@@ -42,7 +42,7 @@ const AuthPage: NextPage = () => {
         <TabPanel value={value} index={1}>
           <RegisterTabContent />
         </TabPanel>
-      </Paper>
+      </StyledContainerTabs>
     </AuthLayout>
   );
 };

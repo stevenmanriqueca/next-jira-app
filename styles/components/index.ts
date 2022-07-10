@@ -1,0 +1,1 @@
+export { StyledContainerTabs } from './ContainerTabs';
