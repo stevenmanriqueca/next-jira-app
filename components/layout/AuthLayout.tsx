@@ -1,6 +1,6 @@
-import { FC, ReactNode } from 'react';
-import Head from 'next/head';
-import { Box } from '@mui/material';
+import { FC, ReactNode } from "react";
+import Head from "next/head";
+import { Box } from "@mui/material";
 
 interface Props {
   children: ReactNode;
@@ -16,10 +16,10 @@ export const AuthLayout: FC<Props> = ({ children, title }) => {
       <main>
         <Box
           sx={{
-            height: '100vh',
-            position: 'relative',
-            display: 'flex',
-            justifyContent: 'center',
+            height: "100vh",
+            position: "relative",
+            display: "flex",
+            justifyContent: "center",
           }}
         >
           {children}

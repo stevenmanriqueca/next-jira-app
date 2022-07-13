@@ -1,6 +1,7 @@
-import { Stack, TextField, Button } from '@mui/material';
-import { useForm } from 'react-hook-form';
-import { InputPassword } from '../ui';
+import { Stack, TextField, Button } from "@mui/material";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { PasswordAdornment } from "../ui";
 
 type FormData = {
   name: string;
@@ -9,64 +10,67 @@ type FormData = {
 };
 
 export const RegisterTabContent = () => {
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm<FormData>();
+
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+
+  const { register, formState: { errors }, handleSubmit } = useForm<FormData>();
 
   const onSubmit = (data: FormData) => console.log(data);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={2}>
-        <TextField
-          autoFocus
-          label="Name"
-          variant="outlined"
-          fullWidth
-          {...register('name', {
+        <TextField autoFocus label="Name" variant="outlined" fullWidth
+          {...register("name", {
             required: {
               value: true,
-              message: 'Name required',
+              message: "Name required",
             },
             minLength: {
               value: 3,
-              message: 'The name must have at least 3 characters',
+              message: "The name must have at least 3 characters",
             },
           })}
-          helperText={String(errors.name?.message || '')}
+          helperText={String(errors.name?.message || "")}
           error={Boolean(errors?.name)}
           autoComplete="off"
         />
-        <TextField
-          label="Email"
-          variant="outlined"
-          fullWidth
-          {...register('email', {
+        <TextField label="Email" variant="outlined" fullWidth
+          {...register("email", {
             required: {
               value: true,
-              message: 'Email requiered',
+              message: "Email requiered",
             },
             pattern: {
               value:
                 /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-              message: 'The email is incorrect',
+              message: "The email is incorrect",
             },
           })}
-          helperText={String(errors.email?.message || '')}
+          helperText={String(errors.email?.message || "")}
           error={Boolean(errors?.email)}
           autoComplete="off"
         />
-        <InputPassword
-          registerInput={register('password', {
+
+        <TextField label="Password" variant="outlined" autoComplete="off"
+          {...register("password", {
             required: {
               value: true,
-              message: 'Password required',
+              message: "Password is required",
+            },
+            minLength: {
+              value: 5,
+              message: "The password must have at least 5 characters",
             },
           })}
-          helperText={String(errors.password?.message || '')}
+          helperText={String(errors.password?.message || "")}
           error={Boolean(errors?.password)}
+          type={showPassword ? "text" : "password"}
+          InputProps={{
+            endAdornment: (
+              <PasswordAdornment showPassword={showPassword} setShowPassword={setShowPassword} />
+            ),
+          }}
         />
         <Button variant="contained" onClick={handleSubmit(onSubmit)}>
           Register
