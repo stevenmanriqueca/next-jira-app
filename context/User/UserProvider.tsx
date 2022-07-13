@@ -29,6 +29,7 @@ export const UserProvider = ({ children }: Props) => {
 
   const loginUser = async ({ email, password }: Login) => {
     try {
+      dispatch({ type: "cleanError" })
       const { data } = await jiraApi.post<User>('/user', {
         email,
         password,
@@ -38,7 +39,6 @@ export const UserProvider = ({ children }: Props) => {
         payload: data,
       });
     } catch (error) {
-      console.log(error);
       dispatch({
         type: 'userError',
         payload: {

@@ -1,20 +1,24 @@
 import { State } from '../../interfaces/context-user/index';
 type userAction =
   | {
-      type: 'userLogin';
-      payload: {
-        id: string;
-        name: string;
-        columnsJira: string[];
-        token: string;
-      };
-    }
-  | {
-      type: 'userError';
-      payload: {
-        message: string;
-      };
+    type: 'userLogin';
+    payload: {
+      id: string;
+      name: string;
+      columnsJira: string[];
+      token: string;
     };
+  }
+  | {
+    type: 'userError';
+    payload: {
+      message: string;
+    };
+  }
+  | {
+    type: "cleanError"
+  }
+  ;
 
 export const userReducer = (state: State, action: userAction): State => {
   switch (action.type) {
@@ -27,7 +31,6 @@ export const userReducer = (state: State, action: userAction): State => {
       };
 
     case 'userError': {
-      console.log(state);
 
       return {
         ...state,
@@ -38,6 +41,18 @@ export const userReducer = (state: State, action: userAction): State => {
           },
         },
       };
+    }
+
+    case "cleanError": {
+      return {
+        ...state,
+        ui: {
+          ...state.ui,
+          error: {
+            message: ""
+          },
+        }
+      }
     }
 
     default:
