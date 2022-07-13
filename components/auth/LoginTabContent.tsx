@@ -1,20 +1,29 @@
+import { useContext } from "react";
 import { Stack, TextField, Button } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { InputPassword } from "../ui";
+import { UserContext } from '../../context/UserContext';
 
 type FormData = {
   email: string;
-  passwordLogin: string;
+  password: string;
 };
 
 export const LoginTabContent = (): JSX.Element => {
+
+  const { state: { error }, loginUser } = useContext(UserContext)
+
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm<FormData>();
 
-  const onSubmit = (data: FormData) => console.log(data);
+
+  const onSubmit = ({ email, password }: FormData) => loginUser({ email, password })
+
+  console.log(error);
+
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -40,18 +49,18 @@ export const LoginTabContent = (): JSX.Element => {
           autoComplete="off"
         />
         <InputPassword
-          registerInput={register("passwordLogin", {
+          registerInput={register("password", {
             required: {
               value: true,
               message: "Password is required"
             },
             minLength: {
-              value: 6,
-              message: "The password must have at least 6 characters"
+              value: 5,
+              message: "The password must have at least 5 characters"
             }
           })}
-          helperText={String(errors.passwordLogin?.message || "")}
-          error={Boolean(errors?.passwordLogin)}
+          helperText={String(errors.password?.message || "")}
+          error={Boolean(errors?.password)}
         />
         <Button variant="contained" onClick={handleSubmit(onSubmit)} type="submit">
           Login
