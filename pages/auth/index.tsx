@@ -1,12 +1,16 @@
-import { useState, SyntheticEvent } from "react";
-import { NextPage, GetServerSideProps } from "next";
-import { Box, Tabs, Tab } from "@mui/material";
-import { AuthLayout } from "../../components/layout";
-import { TabPanel, LoginTabContent, RegisterTabContent } from "../../components/auth";
-import VpnKeyOutlinedIcon from "@mui/icons-material/VpnKeyOutlined";
-import HowToRegOutlinedIcon from "@mui/icons-material/HowToRegOutlined";
+import { useState, SyntheticEvent } from 'react';
+import { NextPage, GetServerSideProps } from 'next';
+import { Box, Tabs, Tab } from '@mui/material';
+import { AuthLayout } from '../../components/layout';
+import {
+  TabPanel,
+  LoginTabContent,
+  RegisterTabContent,
+} from '../../components/auth';
+import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
+import HowToRegOutlinedIcon from '@mui/icons-material/HowToRegOutlined';
 import { StyledContainerTabs } from '../../styles/components/ContainerTabs';
-import { jiraApi } from "../../api";
+import { jiraApi } from '../../api';
 
 const AuthPage: NextPage = () => {
   const [value, setValue] = useState<number>(0);
@@ -16,9 +20,14 @@ const AuthPage: NextPage = () => {
   };
 
   return (
-    <AuthLayout title={value === 0 ? "Auth | Login" : "Auth | Register"}>
+    <AuthLayout title={value === 0 ? 'Auth | Login' : 'Auth | Register'}>
       <StyledContainerTabs>
-        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+        <Box
+          sx={{
+            borderBottom: 1,
+            borderColor: 'divider',
+          }}
+        >
           <Tabs
             value={value}
             onChange={handleChange}
@@ -48,11 +57,9 @@ const AuthPage: NextPage = () => {
   );
 };
 
-
-
 // export const getServerSideProps: GetServerSideProps = async (ctx) => {
 //   const UserSession = await jiraApi.post("jira/",{
-//     email: 
+//     email:
 //   })
 
 //   return {

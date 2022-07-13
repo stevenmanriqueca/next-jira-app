@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { IconButton, InputAdornment, TextField } from "@mui/material";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useState } from 'react';
+import { IconButton, InputAdornment, TextField } from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 
-export const InputPassword = ({registerInput, ...rest }:any): JSX.Element => {
+export const InputPassword = ({ registerInput, ...rest }: any): JSX.Element => {
   const [showPassword, setShowPassword] = useState<boolean>();
 
   const handleClickShowPassword = () => setShowPassword(!showPassword);
@@ -14,7 +14,7 @@ export const InputPassword = ({registerInput, ...rest }:any): JSX.Element => {
       label="Password"
       variant="outlined"
       autoComplete="off"
-      type={showPassword ? "text" : "password"}
+      type={showPassword ? 'text' : 'password'}
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">

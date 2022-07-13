@@ -1,8 +1,8 @@
-import { useContext } from "react";
-import { Stack, TextField, Button } from "@mui/material";
-import { useForm } from "react-hook-form";
-import { InputPassword } from "../ui";
-import { UserContext } from '../../context/UserContext';
+import { useContext } from 'react';
+import { Stack, TextField, Button } from '@mui/material';
+import { useForm } from 'react-hook-form';
+import { InputPassword } from '../ui';
+import { UserContext } from '../../context/User/UserContext';
 
 type FormData = {
   email: string;
@@ -10,8 +10,12 @@ type FormData = {
 };
 
 export const LoginTabContent = (): JSX.Element => {
-
-  const { state: { error }, loginUser } = useContext(UserContext)
+  const {
+    state: {
+      ui: { error },
+    },
+    loginUser,
+  } = useContext(UserContext);
 
   const {
     register,
@@ -19,11 +23,13 @@ export const LoginTabContent = (): JSX.Element => {
     handleSubmit,
   } = useForm<FormData>();
 
-
-  const onSubmit = ({ email, password }: FormData) => loginUser({ email, password })
+  const onSubmit = ({ email, password }: FormData) =>
+    loginUser({
+      email,
+      password,
+    });
 
   console.log(error);
-
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -33,36 +39,40 @@ export const LoginTabContent = (): JSX.Element => {
           label="Email"
           variant="outlined"
           fullWidth
-          {...register("email", {
+          {...register('email', {
             required: {
               value: true,
-              message: "Email requiered"
+              message: 'Email requiered',
             },
             pattern: {
-              value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-              message: "The email is incorrect"
+              value:
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+              message: 'The email is incorrect',
             },
-
           })}
-          helperText={String(errors.email?.message || "")}
+          helperText={String(errors.email?.message || '')}
           error={Boolean(errors?.email)}
           autoComplete="off"
         />
         <InputPassword
-          registerInput={register("password", {
+          registerInput={register('password', {
             required: {
               value: true,
-              message: "Password is required"
+              message: 'Password is required',
             },
             minLength: {
               value: 5,
-              message: "The password must have at least 5 characters"
-            }
+              message: 'The password must have at least 5 characters',
+            },
           })}
-          helperText={String(errors.password?.message || "")}
+          helperText={String(errors.password?.message || '')}
           error={Boolean(errors?.password)}
         />
-        <Button variant="contained" onClick={handleSubmit(onSubmit)} type="submit">
+        <Button
+          variant="contained"
+          onClick={handleSubmit(onSubmit)}
+          type="submit"
+        >
           Login
         </Button>
       </Stack>

@@ -1,9 +1,5 @@
-const Home = ():JSX.Element  => {
-  return (
-    <div>
-      Hello world
-    </div>
-  )
-}
+const Home = (): JSX.Element => {
+  return <div>Hello world</div>;
+};
 
-export default Home 
+export default Home;

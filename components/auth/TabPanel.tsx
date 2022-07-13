@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import { Box } from "@mui/material";
+import { ReactNode } from 'react';
+import { Box } from '@mui/material';
 
 interface Props {
   children: ReactNode;
@@ -14,7 +14,15 @@ export const TabPanel = ({ children, value, index }: Props) => {
       id={`tabpanel-auth-${index}`}
       aria-labelledby={`auth-tab-${index}`}
     >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+      {value === index && (
+        <Box
+          sx={{
+            p: 3,
+          }}
+        >
+          {children}
+        </Box>
+      )}
     </div>
   );
 };

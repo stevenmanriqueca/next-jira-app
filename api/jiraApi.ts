@@ -1,7 +1,7 @@
-import axios from 'axios'
+import axios from 'axios';
 
 const jiraApi = axios.create({
-    baseURL: "https://jira-server-st.herokuapp.com/jira"
-})
+  baseURL: 'https://jira-server-st.herokuapp.com/jira',
+});
 
-export default jiraApi
+export default jiraApi;

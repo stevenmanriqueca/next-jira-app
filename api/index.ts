@@ -1,1 +1,1 @@
-export { default as jiraApi } from "./jiraApi";
+export { default as jiraApi } from './jiraApi';
