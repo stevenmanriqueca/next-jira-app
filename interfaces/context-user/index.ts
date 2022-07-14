@@ -1,5 +1,5 @@
 export interface State {
-  user: User;
+  user: UserData;
   ui: UI;
 }
 
@@ -10,7 +10,7 @@ interface UI {
   };
 }
 
-export interface User {
+export interface UserData {
   id: string;
   name: string;
   columnsJira: string[];
@@ -20,4 +20,8 @@ export interface User {
 export interface Login {
   email: string;
   password: string;
+}
+
+export interface Register extends Login {
+  name: string;
 }
