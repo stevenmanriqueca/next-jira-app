@@ -1,6 +1,7 @@
 import { Stack, TextField, Button } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { UserContext } from '../../context/User/UserContext';
 import { PasswordAdornment } from "../ui";
 
 type FormData = {
@@ -11,11 +12,13 @@ type FormData = {
 
 export const RegisterTabContent = () => {
 
+  const { registerUser } = useContext(UserContext)
+
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const { register, formState: { errors }, handleSubmit } = useForm<FormData>();
 
-  const onSubmit = (data: FormData) => console.log(data);
+  const onSubmit = (data: FormData) => registerUser(data);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
