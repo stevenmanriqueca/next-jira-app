@@ -1,6 +1,6 @@
 ## Application not finished
 
-Due to limitations of my computer I was not able to finish the application in Next js, however the application will now be developed in React + Vite.
+Due to limitations of my computer I was not able to finish the application in Next js, however the application will now be developed in React + Vite and TypeScript.
 
 Link of the new [Repository](https://github.com/stevenmanriqueca/Jira-App).
 
